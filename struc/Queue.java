@@ -7,6 +7,7 @@ public class Queue {
     // Add : O(1)
     // Remove: O(n)
     // Search : Linear : O(m), Binary : O( log n )
+    // Access : O(1)
 
     ArrayList<Integer> arr;
     int size;
