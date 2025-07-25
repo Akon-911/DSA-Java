@@ -40,9 +40,4 @@ public class BinarySearch {
         return false;
 
     }
-
-    public static void main(String[] args) {
-        System.out.println(Linear_Search(7, arr));
-        System.out.println(Binary_Search(25, arr));
-    }
 }
