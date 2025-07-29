@@ -7,7 +7,7 @@ public class Queue {
     // Add : O(1)
     // Remove: O(n)
     // Search : Linear : O(m), Binary : O( log n )
-    // Access : O(1)
+    // Access/seek : O(1)
 
     ArrayList<Integer> arr;
     int size;
@@ -15,6 +15,11 @@ public class Queue {
     public Queue() {
         arr = new ArrayList<Integer>();
         size = arr.size();
+    }
+
+    public void seek() {
+        System.out.println(arr.getFirst());
+        return;
     }
 
     public void remove() {

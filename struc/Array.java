@@ -56,10 +56,23 @@ public class Array {
     }
 
     public void insert(int item, int index) {
-        
+        if (currentSize == max_size+1) {
+            System.out.println("Array is exceeding the current size.");
+            return;
+        }
+
+        int toReplace = item;
+
+        for (int i = index; i < currentSize; i++) {
+            int temp = arr[i];
+            arr[i] = toReplace;
+            toReplace = temp;
+        }
+
+        arr[currentSize++] = toReplace;
     }
 
-    public void remove(int item) {
+    public void remove(int index) {
 
     }
 

@@ -7,7 +7,7 @@ public class Stack {
     // Add : O(1)
     // Remove: O(1)
     // Search : Linear : O(m), Binary : O( log n )
-    // Access : O(1)
+    // Access/Seek : O(1)
 
     ArrayList<Integer> arr;
     int size;
@@ -15,6 +15,11 @@ public class Stack {
     public Stack() {
         arr = new ArrayList<Integer>();
         size = arr.size();
+    }
+
+    public void seek() {
+        System.out.println(arr.getLast());
+        return;
     }
 
     public void remove() {
