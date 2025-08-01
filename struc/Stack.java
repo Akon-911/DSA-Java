@@ -1,7 +1,5 @@
 package struc;
 
-import java.util.ArrayList;
-
 public class Stack {
     
     // Add : O(1)
@@ -9,68 +7,45 @@ public class Stack {
     // Search : Linear : O(m), Binary : O( log n )
     // Access/Seek : O(1)
 
-    ArrayList<Integer> arr;
+    int[] arr;
     int size;
+    int pointer;
 
-    public Stack() {
-        arr = new ArrayList<Integer>();
-        size = arr.size();
+    public Stack(int Size) {
+        this.size = Size;
+        this.arr = new int[Size];
+        this.pointer = -1;
     }
 
     public void seek() {
-        System.out.println(arr.getLast());
-        return;
+
+        if (pointer == -1) System.out.println("Stack is empty");
+        else System.err.println(arr[pointer]);
+
     }
 
+    @SuppressWarnings("null")
     public void remove() {
-        if (size == 0) { 
-            System.out.println("Array is empty");
+        if (pointer == -1) { 
+            System.out.println("Stack is already Empty");
             return;
         } else {
-            System.out.println("Element Removed: "+arr.remove(--size).toString());
-            return;
+            System.out.println(arr[pointer]);
+            arr[pointer--] = (Integer) null;
         }
     }
 
     public void add(int toAdd) {
-        arr.add(toAdd);
-        size++;
-        System.out.println("Element " + Integer.toString(toAdd)+ " was added successfully. Size of the aray: "+ Integer.toString(size));
-    }
-
-    // returns -1 or the index
-    public int SearchLinear(int toFind) {
-        for (int i = 0; i < size; i++) {
-            if (arr.get(i) == toFind) {
-                return i;
-            } else continue;
-        }
-        return -1; // If not found
-    }
-
-    public int SearchBinary(int toFind) {
-        int start=0; int end=size-1; int mid=(size-1)/2;
-        boolean toTerminate = false;
-        try {
-            while (!toTerminate) {
-                if (arr.get(mid) == toFind) {
-                    return mid;
-                } else if (arr.get(mid) > toFind) {
-                    end=mid-1;
-                } else {
-                    start=mid+1;
-                }
-                mid=(start+end)/2;
-
-                if (start == mid && mid == end && arr.get(mid) != toFind) toTerminate=true;
-
-            }
-        } catch (IndexOutOfBoundsException E) {
-            System.out.println("Item not found");
+        if (pointer == size-1) {
+            System.out.println("Stack is full");
+            return;
+        } else {
+            arr[pointer++] = toAdd;
+            return;
         }
 
-        return -1;
+    }
 
-    } 
+    
 
 }
