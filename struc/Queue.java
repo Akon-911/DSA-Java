@@ -1,77 +1,57 @@
 package struc;
 
-import java.util.ArrayList;
-
 public class Queue {
     
     // Add : O(1)
     // Remove: O(n)
-    // Search : Linear : O(m), Binary : O( log n )
     // Access/seek : O(1)
 
-    ArrayList<Integer> arr;
-    int size;
+    int[] arr;
+    int currSize;
+    private int max_size;
 
-    public Queue() {
-        arr = new ArrayList<Integer>();
-        size = arr.size();
+    public Queue(int Size) {
+        this.arr = new int[Size];
+        this.currSize = 0;
+        this.max_size = Size;
     }
 
-    public void seek() {
-        System.out.println(arr.getFirst());
+    public int seek() {    
+        return arr[0];
+    }
+
+    public void append(int item) {
+
+        if (currSize == arr.length) {
+            System.out.println("Queue Overflowing");
+        } else {
+            this.arr[currSize++] = item;
+        }
+    
         return;
+
     }
 
-    public void remove() {
-        if (size == 0) { 
-            System.out.println("Array is empty");
+    public void pop() {
+        if (currSize == 0) {
+            System.out.println("Queue is empty...");
             return;
         } else {
-            System.out.println("Element Removed: "+arr.remove(0).toString());
-            size--;
-            return;
-        }
-    }
-
-    public void add(int toAdd) {
-        arr.add(toAdd);
-        size++;
-        System.out.println("Element " + Integer.toString(toAdd)+ " was added successfully. Size of the aray: "+ Integer.toString(size));
-    }
-
-    // returns -1 or the index
-    public int SearchLinear(int toFind) {
-        for (int i = 0; i < size; i++) {
-            if (arr.get(i) == toFind) {
-                return i;
-            } else continue;
-        }
-        return -1; // If not found
-    }
-
-    public int SearchBinary(int toFind) {
-        int start=0; int end=size-1; int mid=(size-1)/2;
-        boolean toTerminate = false;
-        try {
-            while (!toTerminate) {
-                if (arr.get(mid) == toFind) {
-                    return mid;
-                } else if (arr.get(mid) > toFind) {
-                    end=mid-1;
-                } else {
-                    start=mid+1;
-                }
-                mid=(start+end)/2;
-
-                if (start == mid && mid == end && arr.get(mid) != toFind) toTerminate=true;
-
+            System.out.println("Popped element :"+arr[0]);
+            int[] toReplace = new int[max_size];
+            for (int i = 1; i <currSize; i++) {
+                toReplace[i-1] = arr[i];
             }
-        } catch (IndexOutOfBoundsException E) {
-            System.out.println("Item not found");
+            arr = toReplace;
+            currSize--;
         }
+    }
 
-        return -1;
-
-    } 
+    public void printQ() {
+        for (int i = 0; i < currSize; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 
 }
